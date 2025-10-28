@@ -35,7 +35,7 @@ void hospital_system(){
       std::cout << "adding book\n";
     }
     else if (choice == 2){
-      std::cout << "search_books_by_prefix\n"
+      std::cout << "search_books_by_prefix\n";
     }
     else if (choice == 3){
 
