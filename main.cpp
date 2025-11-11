@@ -17,13 +17,13 @@ int menu(){
     std::cout << "Library Menu:\n";
     std::cout << "1) add_book\n";
     std::cout << "2) search_books_by_prefix\n";
-    std::cout << "3) search_books_by_prefix\n";
-    std::cout << "4) print_who_borrowed_book_by_name\n";
-    std::cout << "5) print_library_by_id\n";
-    std::cout << "6) print_library_by_name\n";
-    std::cout << "7) add_user\n";
-    std::cout << "8) user_borrow_book\n";
-    std::cout << "9) user_return_book\n";
+    std::cout << "3) print_who_borrowed_book_by_name\n";
+    std::cout << "4) print_library_by_id\n";
+    std::cout << "5) print_library_by_name\n";
+    std::cout << "6) add_user\n";
+    std::cout << "7) user_borrow_book\n";
+    std::cout << "8) user_return_book\n";
+    std::cout << "9) print_users\n";
     std::cout << "10) Exit\n";
 
 
@@ -47,6 +47,27 @@ void add_book(){
   bookPosition++;
 }
 
+void print_library_by_id(){
+  for(int i = 0; i < bookPosition; i++){
+    for(int j = i + 1; j < bookPosition; j++){
+      if(listOfBooks[j].id < listOfBooks[i].id){
+        std::cout << "book id for i:" << listOfBooks[i].id << " " << "book id for j:" << listOfBooks[j].id << "\n";
+        Book hold = listOfBooks[j];
+        listOfBooks[j] = listOfBooks[i];
+        listOfBooks[i] = hold;
+      }
+    }
+  }
+  for(int i = 0; i < bookPosition; i++){
+    std::cout << "id = " << listOfBooks[i].id << " "
+              << "name = " << listOfBooks[i].name << " "
+              << "total_quanity " << listOfBooks[i].quantity << " "
+              << "total_borrowed " << listOfBooks[i].borrowed << "\n";
+  }
+}
+
+
+
 
 void hospital_system(){
   while (true){
@@ -61,7 +82,7 @@ void hospital_system(){
 
     }
     else if (choice == 4){
-
+      print_library_by_id();
     }
     else if (choice == 5){
 
