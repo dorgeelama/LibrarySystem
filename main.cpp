@@ -1,5 +1,16 @@
 #include<iostream>
 
+struct Book{
+  int id;
+  std::string name;
+  int quantity;
+  int borrowed;
+};
+
+const int listOfBookSize = 100;
+int bookPosition = 0;
+Book listOfBooks[listOfBookSize]{};
+
 int menu(){
   int choice = -1;
   while (choice == -1){
@@ -27,12 +38,23 @@ int menu(){
   return choice;
 }
 
+void add_book(){
+  int id, quantity;
+  std::string name;
+  std::cout << "Enter book info: id & name & total quantity: ";
+  std::cin >> id >> name >> quantity;
+  listOfBooks[bookPosition] = Book{id, name, quantity};
+  bookPosition++;
+}
+
+
+
 
 void hospital_system(){
   while (true){
     int choice = menu();
     if(choice == 1){
-      std::cout << "adding book\n";
+      add_book();
     }
     else if (choice == 2){
       std::cout << "search_books_by_prefix\n";
