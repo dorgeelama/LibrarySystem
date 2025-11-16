@@ -1,16 +1,25 @@
 #include<iostream>
 
 struct Book{
-  int id;
-  std::string name;
-  int quantity;
-  int borrowed;
+  int id{};
+  std::string name{};
+  int quantity{};
+  int borrowed{};
+};
+
+struct User {
+  std::string name{};
+  int id{};
+  int currentAmountOfBooksBorrowed{0};
+  int borrowed_books[100]{};
 };
 
 const int listOfBookSize = 100;
+const int userBaseSize = 100;
 int bookPosition = 0;
+int userPosition = 0;
 Book listOfBooks[listOfBookSize]{};
-
+User listOfUsers[userBaseSize]{};
 int menu(){
   int choice = -1;
   while (choice == -1){
@@ -81,9 +90,29 @@ void print_library_by_name(){
     }
   }
   print_books();
-
 }
 
+void add_user() {
+  std::string name;
+  int id;
+  std::cout << "Enter user name & national id: \n";
+  std::cin >> name >> id; 
+  listOfUsers[userPosition] = User{name, id};
+  userPosition++;
+}
+
+void print_users(){
+  for(int i = 0; i < userPosition; i++){
+    std::cout << "user " << listOfUsers[i].name << " " 
+              << "id " << listOfUsers[i].id << " "
+              << "borrowed books ids: ";
+    for(int j = 0; j < listOfUsers[i].currentAmountOfBooksBorrowed; j++){
+      std::cout << listOfUsers[i].borrowed_books[j] << " ";
+    }
+    std::cout << "\n";
+  }
+  
+}
 
 
 void hospital_system(){
@@ -106,6 +135,7 @@ void hospital_system(){
       
     }
     else if (choice == 6){
+      add_user();
 
     }
     else if (choice == 7){
@@ -115,7 +145,7 @@ void hospital_system(){
 
     }
     else if (choice == 9){
-
+      print_users();
     }
     else if (choice == 10){
       break;
