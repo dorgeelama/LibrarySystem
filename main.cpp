@@ -114,6 +114,32 @@ void print_users(){
   
 }
 
+int findBookByName(std::string bookName){
+  for(int i = 0; i < bookPosition; i++){
+    if(listOfBooks[i].name == bookName){
+      listOfBooks[i].borrowed++;
+      return listOfBooks[i].id;
+    }
+  }
+  return 0;
+}
+
+void user_borrow_book(){
+  std::string name, bookName;
+  std::cout << "Enter user name and book name: \n";
+  std::cin >> name >> bookName;
+
+  for(int i = 0; i < userBaseSize; i++){
+    if(listOfUsers[i].name == name){
+      listOfUsers[i].borrowed_books[listOfUsers[i].currentAmountOfBooksBorrowed] = findBookByName(bookName);
+      listOfUsers[i].currentAmountOfBooksBorrowed++;
+    }
+  }
+
+
+
+}
+
 
 void hospital_system(){
   while (true){
@@ -139,6 +165,7 @@ void hospital_system(){
 
     }
     else if (choice == 7){
+      user_borrow_book();
 
     }
     else if (choice == 8){
