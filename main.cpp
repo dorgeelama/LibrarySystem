@@ -135,9 +135,40 @@ void user_borrow_book(){
       listOfUsers[i].currentAmountOfBooksBorrowed++;
     }
   }
+}
 
 
+void user_return_book(){
+  std::string name, bookName;
+  std::cin >> name >> bookName;
+  std::cout << "Enter user name and book name: \n";
+  for(int i = 0; i < userBaseSize; i++){
+    if(listOfUsers[i].name == name){
+      listOfUsers[i].borrowed_books[listOfUsers[i].currentAmountOfBooksBorrowed] = 0;
+      listOfUsers[i].currentAmountOfBooksBorrowed--;
+    }
+  }
 
+}
+
+void search_books_by_prefix(){
+  std::string prefix;
+  std::cout << "Enter book name prefix: \n";
+  std::cin >> prefix;
+  int tracker = 0; 
+  for(int i = 0; i < listOfBookSize; i++){
+    std::string bookName = listOfBooks[i].name;
+    for(int j = 0; j < prefix.size(); j++){
+      if(bookName[j] == prefix[j] && (j == prefix.size() - 1)){
+        tracker++;
+        std::cout << bookName << "\n";
+      }
+    }
+  }
+
+  if(tracker == 0){
+    std::cout << "No books with that prefix\n";
+  }
 }
 
 
@@ -148,7 +179,7 @@ void hospital_system(){
       add_book();
     }
     else if (choice == 2){
-      std::cout << "search_books_by_prefix\n";
+      search_books_by_prefix();
     }
     else if (choice == 3){
 
@@ -169,6 +200,7 @@ void hospital_system(){
 
     }
     else if (choice == 8){
+      user_return_book();
 
     }
     else if (choice == 9){
