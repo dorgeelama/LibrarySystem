@@ -156,7 +156,7 @@ void search_books_by_prefix(){
   std::cout << "Enter book name prefix: \n";
   std::cin >> prefix;
   int tracker = 0; 
-  for(int i = 0; i < listOfBookSize; i++){
+  for(int i = 0; i < bookPosition; i++){
     std::string bookName = listOfBooks[i].name;
     for(int j = 0; j < prefix.size(); j++){
       if(bookName[j] == prefix[j] && (j == prefix.size() - 1)){
